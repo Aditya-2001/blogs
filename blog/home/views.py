@@ -1,9 +1,11 @@
 from django.shortcuts import render,HttpResponse
 from django.contrib.auth.models import User
+from .models import blog
 
 # Create your views here.
 def index(request):
-    return render(request,'home/index.html',context={})
+    data=blog.objects.all()
+    return render(request,'home/index.html',context={"data": data,"var": 0})
 
 def register(request):
     return render(request,'home/register.html',context={})
@@ -35,7 +37,17 @@ def check_account(request):
         password=request.POST.get("password")
 
         try:
-            user = User.objects.get(username=username, password=password)
+            checker = User.objects.get(username=username, password=password)
             return render(request,"home/add_your_blog.html",context={"value": True})
         except:
             return HttpResponse("<h1>Username or Password does not matched</h1>")
+
+def createblog(request):
+    if request.method == "POST":
+        author=request.POST.get("author")
+        description=request.POST.get("description")
+        heading=request.POST.get("heading")
+
+        blog.objects.create(author=author, brief=description, heading=heading)
+        data=blog.objects.all()
+        return render(request,'home/index.html',context={"data": data,"var": 0})

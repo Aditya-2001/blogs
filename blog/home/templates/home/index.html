@@ -22,8 +22,27 @@
 					<li><a href="{% url 'register' %}">Register your account</a></li>
 				</ul>
 			</nav>	
+			<br>
+			<br>
 
+			<div>
+			{% for each in data %}
 
+			
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'img/no_image.png' %}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <p class="card-text">Title: {{each.heading}}</p>
+				  <p class="card-text">Author: {{each.heading}}</p>
+				</div>
+				<div class="card-body">
+				  <a href="#" class="card-link">Link to see description</a>
+				</div>
+			  </div>
+			  <br>
+			  <br>
+			{% endfor %}
+			</div>
 		<!-- Footer -->
 			<footer id="footer" style="background-color: #0e5e9d;>
 				<div class="inner">
