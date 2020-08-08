@@ -30,6 +30,8 @@ def check_user(request):
             except:
                 User.objects.create(username=username, password=password, email=email)
                 return render(request,'home/addblog.html',context={})
+    else:
+        return HttpResponse("<h1>404: ERROR- This page can not be accessed by anyone</h1>")
 
 def check_account(request):
     if request.method == "POST":
@@ -41,6 +43,9 @@ def check_account(request):
             return render(request,"home/add_your_blog.html",context={"value": True})
         except:
             return HttpResponse("<h1>Username or Password does not matched</h1>")
+    
+    else:
+        return HttpResponse("<h1>404: ERROR- This page can not be accessed by anyone</h1>")
 
 def createblog(request):
     if request.method == "POST":
@@ -51,6 +56,9 @@ def createblog(request):
         blog.objects.create(author=author, brief=description, heading=heading)
         data=blog.objects.all()
         return render(request,'home/index.html',context={"data": data,"var": 0})
+    else:
+        return HttpResponse("<h1>Please login before to add a blog.</h1>")
+
 
 def suggestion_form(request):
     if request.method == "GET":
