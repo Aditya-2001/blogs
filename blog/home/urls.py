@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import index,register,addblog,check_user,check_account,createblog
+from .views import index,register,addblog,check_user,check_account,createblog,suggestion_form
 
 urlpatterns = [
     path('',index,name="index"),
@@ -24,4 +24,5 @@ urlpatterns = [
     path('check_user/',check_user,name="check_user"),
     path('check_account/',check_account,name="check_account"),
     path('createblog/',createblog,name="createblog"),
+    path('suggestion_form/',suggestion_form,name="suggestion_form"),
 ]

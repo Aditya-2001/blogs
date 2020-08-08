@@ -9,3 +9,11 @@ class blog(models.Model):
 
     def __str__(self):
         return self.author
+
+class suggestion(models.Model):
+    name=models.CharField(max_length=100, null=True)
+    email=models.CharField(max_length=100, null=True)
+    suggestion=models.CharField(max_length=10000, null=True)
+
+    def __str__(self):
+        return self.name

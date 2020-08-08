@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse
 from django.contrib.auth.models import User
-from .models import blog
+from .models import blog,suggestion
 
 # Create your views here.
 def index(request):
@@ -51,3 +51,12 @@ def createblog(request):
         blog.objects.create(author=author, brief=description, heading=heading)
         data=blog.objects.all()
         return render(request,'home/index.html',context={"data": data,"var": 0})
+
+def suggestion_form(request):
+    if request.method == "GET":
+        name=request.GET.get("name")
+        email=request.GET.get("email")
+        suggest=request.GET.get("suggestion")
+
+        suggestion.objects.create(name=name, email=email, suggestion=suggest)
+        return HttpResponse("<h1>Your suggestion is successfully submitted. This is very important to us and we will try to update ourselves.")
