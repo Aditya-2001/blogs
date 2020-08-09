@@ -23,7 +23,7 @@
 			<nav id="menu" style="background-color: #0e5e9d;">
 				<ul class="links">
 					<li><a href="{% url 'index' %}">Home</a></li>
-					<li><a href="{% url 'addblog' %}">Add Blog</a></li>
+					<li><a href="{% url 'login_request' %}">Add Blog</a></li>
 					<li><a href="{% url 'register' %}">Register your account</a></li>
 				</ul>
 			</nav>
@@ -63,29 +63,10 @@
 
 
 		<!-- Footer -->
-		<footer id="footer" style="background-color: #0e5e9d;>
+		<footer id="footer" style="background-color: #0e5e9d;">
 			<div class="inner">
 
-				<h2>Fill this form to give suggestions</h2>
-
-				<form action="{% url 'suggestion_form' %}" method="GET">
-
-					<div class="field half first">
-						<label for="name">Name</label>
-						<input name="name" id="name" type="text" placeholder="Name">
-					</div>
-					<div class="field half">
-						<label for="email">Email</label>
-						<input name="email" id="email" type="email" placeholder="Email">
-					</div>
-					<div class="field">
-						<label for="suggestion">Write your Suggestions</label>
-						<textarea name="suggestion" id="message" rows="6" placeholder="Any suggestion"></textarea>
-					</div>
-					<ul class="actions">
-						<li><input value="Send your feedback" class="button alt" type="submit"></li>
-					</ul>
-				</form>
+			
 				<div class="copyright">
 					&copy; Copyrights reserved : Aditya Aggarwal
 				</div>

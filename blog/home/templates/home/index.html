@@ -17,10 +17,12 @@
 		<!-- Nav -->
 			<nav id="menu" style="background-color: #0e5e9d;">
 				<ul class="links">
-					<li>WELCOME {{request.user}}</li>
+					<li>Welcome  {{request.user}}</li>
+					<br>
 					<li><a href="{% url 'index' %}">Home</a></li>
-					<li><a href="{% url 'addblog' %}">Add Blog</a></li>
+					<li><a href="{% url 'login_request' %}">Add Blog</a></li>
 					<li><a href="{% url 'register' %}">Register your account</a></li>
+					<li><a href="{% url 'logout_request' %}">Logout</a></li>
 				</ul>
 			</nav>	
 			<br>

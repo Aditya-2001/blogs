@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
 from .models import blog,suggestion
+from django.contrib import messages
 from django.contrib.auth import (login,authenticate,logout)
 
 # Create your views here.
@@ -11,11 +12,11 @@ def index(request):
 def register(request):
     return render(request,'home/register.html',context={})
 
-def addblog(request):
+def login_request(request):
     if request.user.is_authenticated :
         return render(request,'home/add_your_blog.html',context={})
     else:
-        return render(request,'home/addblog.html',context={})
+        return render(request,'home/login.html',context={})
 
 def check_user(request):
     if request.method == "POST":
@@ -43,12 +44,11 @@ def check_account(request):
         username=request.POST.get("username")
         password=request.POST.get("password")
 
-        try:
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request,user)
-                return render(request,'home/add_your_blog.html',context={})
-        except:
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request,user)
+            return render(request,'home/add_your_blog.html',context={})
+        else:
             return HttpResponse("<h1>Username or Password does not matched</h1>")
     
     else:
@@ -65,6 +65,10 @@ def createblog(request):
         return render(request,'home/index.html',context={"data": data,"var": 0})
     else:
         return HttpResponse("<h1>Please login before to add a blog.</h1>")
+
+def logout_request(request):
+    logout(request)
+    return redirect("index")
 
 
 def suggestion_form(request):
