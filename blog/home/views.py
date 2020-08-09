@@ -64,7 +64,7 @@ def createblog(request):
         data=blog.objects.all()
         return render(request,'home/index.html',context={"data": data,"var": 0})
     else:
-        return HttpResponse("<h1>Please login before to add a blog.</h1>")
+        return redirect('login_request')
 
 def logout_request(request):
     logout(request)
