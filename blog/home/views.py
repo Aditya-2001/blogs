@@ -1,6 +1,7 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
 from .models import blog,suggestion
+from django.contrib.auth import (login,authenticate,logout)
 
 # Create your views here.
 def index(request):
@@ -11,7 +12,10 @@ def register(request):
     return render(request,'home/register.html',context={})
 
 def addblog(request):
-    return render(request,'home/addblog.html',context={})
+    if request.user.is_authenticated :
+        return render(request,'home/add_your_blog.html',context={})
+    else:
+        return render(request,'home/addblog.html',context={})
 
 def check_user(request):
     if request.method == "POST":
@@ -26,9 +30,10 @@ def check_user(request):
             try:
                 user = User.objects.get(email=email)
                 return HttpResponse("<h1>Email is already registered</h1>")
-
             except:
-                User.objects.create(username=username, password=password, email=email)
+                user = User.objects.create(username=username, email=email)
+                user.set_password(password)
+                user.save()
                 return render(request,'home/addblog.html',context={})
     else:
         return HttpResponse("<h1>404: ERROR- This page can not be accessed by anyone</h1>")
@@ -39,8 +44,10 @@ def check_account(request):
         password=request.POST.get("password")
 
         try:
-            checker = User.objects.get(username=username, password=password)
-            return render(request,"home/add_your_blog.html",context={"value": True})
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request,user)
+                return render(request,'home/add_your_blog.html',context={})
         except:
             return HttpResponse("<h1>Username or Password does not matched</h1>")
     

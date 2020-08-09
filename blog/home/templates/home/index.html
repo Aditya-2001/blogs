@@ -17,6 +17,7 @@
 		<!-- Nav -->
 			<nav id="menu" style="background-color: #0e5e9d;">
 				<ul class="links">
+					<li>WELCOME {{request.user}}</li>
 					<li><a href="{% url 'index' %}">Home</a></li>
 					<li><a href="{% url 'addblog' %}">Add Blog</a></li>
 					<li><a href="{% url 'register' %}">Register your account</a></li>
@@ -33,7 +34,8 @@
 				<img src="{% static 'img/no_image.png' %}" class="card-img-top" alt="...">
 				<div class="card-body">
 				  <p class="card-text">Title: {{each.heading}}</p>
-				  <p class="card-text">Author: {{each.heading}}</p>
+				  <p class="card-text">Author: {{each.author}}</p>
+				  <p class="card-text">ID: {{each.id}}</p>
 				</div>
 				<div class="card-body">
 				  <a href="#" class="card-link">Link to see description</a>
