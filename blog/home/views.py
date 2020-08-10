@@ -79,3 +79,11 @@ def suggestion_form(request):
 
         suggestion.objects.create(name=name, email=email, suggestion=suggest)
         return HttpResponse("<h1>Your suggestion is successfully submitted. This is very important to us and we will try to update ourselves.")
+
+def description(request):
+    if request.method== "GET":
+        ID=request.GET.get("ID")
+        user=blog.objects.get(id=ID)
+        return render(request,"home/description.html",context={"user": user})
+    else:
+        return redirect('index')

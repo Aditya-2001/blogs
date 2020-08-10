@@ -37,11 +37,14 @@
 				<div class="card-body">
 				  <p class="card-text"><b style="color: black;">Title: {{each.heading}}</b></p>
 				  <p class="card-text"><b style="color: black;">Author: {{each.author}}</b></p>
-				  <p class="card-text"><b style="color: black;">ID: {{each.id}}</b></p>
+				  <p class="card-text"><b style="color: black;">BLOG ID: {{each.id}}</b></p>
 				</div>
-				<div class="card-body">
-				  <a href="#" class="card-link">Link to see description</a>
-				</div>
+				<ul class="actions">
+					<form action="{% url 'description' %}" method="GET">
+						<input type="hidden" name="ID" value="{{each.id}}"}>
+						<li><input value="Link to see description" class="button alt" type="submit"></li>
+					</form>
+				</ul>
 			  </div>
 			  <br>
 			  <br>
