@@ -28,18 +28,25 @@
 				</ul>
 			</nav>
 
-			<div class="card" style="width: 18rem;" style="margin: center;">
-				<img src="{% static 'img/no_image.png' %}"  class="card-img-top" alt="...">
-				<div class="card-body">
-				  <p class="card-text"><b style="color: black;">Title: {{user.heading}}</b></p>
-				  <p class="card-text"><b style="color: black;">Author: {{user.author}}</b></p>
-				  <p class="card-text"><b style="color: black;">Blog ID: {{user.id}}</b></p>
-				  <p class="card-text"><b style="color: black;">Description: {{user.brief}}</b></p>
-				</div>
-			  </div>
 			  <br>
 			  <br>
-
+              <section>
+                <div class="container">
+                  <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="text-align: center; align-self: center;">
+                <div style="width: 18rem;">
+                    <img src="{% static 'img/no_image.png' %}" style="margin: center;" alt="...">
+                    <div class="card-body">
+                      <p><b style="color: black;">Title: {{user.heading}}</b></p>
+                      <p><b style="color: black;">Author: {{user.author}}</b></p>
+                      <p><b style="color: black;">Blog ID: {{user.id}}</b></p>
+                      <p><b style="color: black;" >Description: {{user.brief}}</b></p>
+                    </div>
+                  </div>
+              </div>
+              </div>
+              </div>
+              </section>
 		<!-- Footer -->
 		<footer id="footer" style="background-color: #0e5e9d;">
 			<div class="inner">
