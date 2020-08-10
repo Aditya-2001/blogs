@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import blog,suggestion
 from django.contrib import messages
 from django.contrib.auth import (login,authenticate,logout)
+from .forms import AddPostForm
 
 # Create your views here.
 def index(request):
@@ -56,11 +57,10 @@ def check_account(request):
 
 def createblog(request):
     if request.method == "POST":
-        author=request.POST.get("author")
-        description=request.POST.get("description")
-        heading=request.POST.get("heading")
-
-        blog.objects.create(author=author, brief=description, heading=heading)
+        form = AddPostForm(request.POST, request.FILES)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()        
         data=blog.objects.all()
         return render(request,'home/index.html',context={"data": data,"var": 0})
     else:

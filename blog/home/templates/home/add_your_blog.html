@@ -5,8 +5,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-	<form method="POST" action="{% url 'createblog' %}">
+	<form method="POST" action="{% url 'createblog' %}" enctype="multipart/form-data">
 		{% csrf_token %}
+		<div class="form-group">
+			<label for="image">Image of the blog</label>
+			<input type="file" name="image" class="form-control" id="inputAddress" required>
+		  </div>
 		<div class="form-row">
 		  <div class="form-group col-md-6">
 			<label for="heading">Heading</label>
