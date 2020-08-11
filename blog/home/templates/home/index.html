@@ -5,9 +5,10 @@
 		<title>BLOGS by Aditya</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
 	</head>
-	<body style="background-color: #44d68b; color: black;">
+	<body style="background-color: white; color: black;">
 			<!-- Header -->
 			<header id="header" class="alt" style="background-color: #0e5e9d">
 				<div class="logo"><a href="{% url 'index' %}">Blogs  <span>by ADITYA</span></a></div>
@@ -32,17 +33,16 @@
 			{% for each in data %}
 
 			
-			<div class="card" style="width: 18rem; margin-left: 40%; margin-top: 2%;">
-				<img src="{% static 'img/no_image.png' %}"  class="card-img-top" alt="...">
+			<div class="card" style="width: 73rem; margin-left: 9%; margin-right: 10%; margin-top: 2%; background-color: #0e5e9d;">
+				<img src="{{each.image.url}}" width="1000" height="500" class="card-img-top" alt="{% static 'img/no_image.png' %}">
 				<div class="card-body">
-				  <p class="card-text"><b style="color: black;">Title: {{each.heading}}</b></p>
-				  <p class="card-text"><b style="color: black;">Author: {{each.author}}</b></p>
-				  <p class="card-text"><b style="color: black;">BLOG ID: {{each.id}}</b></p>
+				  <p class="card-text" style="margin-left: 25%;"><b style="color: white;"><font size="+5">Title: {{each.heading}}</font></b></p>
+				  <p class="card-text" style="margin-left: 25%;"><b style="color: white;"><font size="+5">Author: {{each.author}}</font></b></p>
 				</div>
-				<ul class="actions">
+				<ul class="actions" style="margin-left: 25%;">
 					<form action="{% url 'description' %}" method="GET">
 						<input type="hidden" name="ID" value="{{each.id}}"}>
-						<li><input value="Link to see description" class="button alt" type="submit"></li>
+						<li><button type="submit" class="btn btn-primary btn-lg"><font size="+2">Description</font></button></li>
 					</form>
 				</ul>
 			  </div>

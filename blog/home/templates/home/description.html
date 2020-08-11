@@ -30,23 +30,13 @@
 
 			  <br>
 			  <br>
-              <section>
-                <div class="container">
-                  <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="text-align: center; align-self: center;">
-                <div style="width: 18rem;">
-                    <img src="{% static 'img/no_image.png' %}" style="margin: center;" alt="...">
-                    <div class="card-body">
-                      <p><b style="color: black;">Title: {{user.heading}}</b></p>
-                      <p><b style="color: black;">Author: {{user.author}}</b></p>
-                      <p><b style="color: black;">Blog ID: {{user.id}}</b></p>
-                      <p><b style="color: black;" >Description: {{user.brief}}</b></p>
-                    </div>
-                  </div>
-              </div>
-              </div>
-              </div>
-              </section>
+              <div class="card" style="width: 73rem; margin-left: 9%; margin-right: 10%; margin-top: 2%; background-color: #0e5e9d;">
+				<img src="{{user.image.url}}" width="1000" height="500" class="card-img-top" alt="{% static 'img/no_image.png' %}">
+				<div class="card-body">
+				  <p class="card-text"><b style="color: white;"><font size="+4">{{user.brief}}</font></b></p>
+				</div>
+			  </div>
+			  <br><br><br><br><br>
 		<!-- Footer -->
 		<footer id="footer" style="background-color: #0e5e9d;">
 			<div class="inner">
