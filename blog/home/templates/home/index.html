@@ -11,14 +11,14 @@
 	<body style="background-color: white; color: black;">
 			<!-- Header -->
 			<header id="header" class="alt" style="background-color: #0e5e9d">
-				<div class="logo"><a href="{% url 'index' %}">Blogs  <span>by ADITYA</span></a></div>
+				<div class="logo"><a href="{% url 'index' %}">Blogs  <span>by ADITYA </span> {% if user.is_authenticated %},  Welcome  {{request.user}}{% endif %}</a></div>
 				<a href="#menu"><span>Menu</span></a>
 			</header>
 
 		<!-- Nav -->
 			<nav id="menu" style="background-color: #0e5e9d;">
 				<ul class="links">
-					<li>Welcome  {{request.user}}</li>
+					{% if user.is_authenticated %}<li>Hi, {{request.user}}</li>{% endif %}
 					<br>
 					<li><a href="{% url 'index' %}">Home</a></li>
 					<li><a href="{% url 'login_request' %}">Add Blog</a></li>
