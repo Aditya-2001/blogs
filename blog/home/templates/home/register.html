@@ -27,7 +27,16 @@
 					<li><a href="{% url 'register' %}">Register your account</a></li>
 				</ul>
 			</nav>
-
+			<br><br>
+			{% if wrong_email %}
+			<marquee>This email is already registered</marquee>
+			{% endif %}
+			{% if wrong_username %}
+			<marquee>Try different Username</marquee>
+			{% endif %}
+			{% if wrong_password %}
+			<marquee>Password does not matched</marquee>
+			{% endif %}
 
 			<div id="login">
 				<h3 class="text-center text-white pt-5">Registration form</h3>
@@ -40,6 +49,14 @@
 									<h3 class="text-center text-info">User register here to login</h3>
 									<br>
 									<div class="form-group">
+										<label for="first_name" class="text-info">First Name:</label><br>
+										<input type="text" name="first_name" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label for="last_name" class="text-info">Last Name:</label><br>
+										<input type="text" name="last_name" class="form-control" required>
+									</div>
+									<div class="form-group">
 										<label for="username" class="text-info">Username:</label><br>
 										<input type="text" name="username" id="username" class="form-control" required>
 									</div>
@@ -48,8 +65,12 @@
 										<input type="email" name="email" id="email" class="form-control" required>
 									</div>
 									<div class="form-group">
-										<label for="password" class="text-info">Password:</label><br>
-										<input type="text" name="password" id="password" class="form-control" required>
+										<label for="password1" class="text-info">Password:</label><br>
+										<input type="password" name="password1" id="password" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label for="password2" class="text-info">Confirm Password:</label><br>
+										<input type="password" name="password2" id="password" class="form-control" required>
 									</div>
 									<div class="form-group">
 										<input type="submit" name="submit" class="btn btn-info btn-md" value="submit">

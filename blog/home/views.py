@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import blog,suggestion
 from django.contrib import messages
 from django.contrib.auth import (login,authenticate,logout)
-from .forms import AddPostForm
+from .forms import AddPostForm,user_form
 
 # Create your views here.
 def index(request):
@@ -21,22 +21,31 @@ def login_request(request):
 
 def check_user(request):
     if request.method == "POST":
+        form = user_form(request.POST)
         username=request.POST.get("username")
         email=request.POST.get("email")
-        password=request.POST.get("password")
-
         try:
-            user = User.objects.get(username=username)
-            return HttpResponse("<h1>Username already exists in database</h1>")
+            checker = User.objects.get(email=email)
+            messages.info(request,"This email is already registered")
+            return render(request,"home/register.html",context={"wrong_email": True})
         except:
             try:
-                user = User.objects.get(email=email)
-                return HttpResponse("<h1>Email is already registered</h1>")
+                checker = User.objects.get(username=username)
+                messages.info(request,"Try some different username")
+                return render(request,"home/register.html",context={"wrong_username": True})
             except:
-                user = User.objects.create(username=username, email=email)
-                user.set_password(password)
-                user.save()
-                return render(request,'home/addblog.html',context={})
+                print(form.is_valid())
+                if form.is_valid():
+                    first_name = User.POST.get("first_name")
+                    last_name = User.POST.get("last_name")   
+                    password = User.POST.get("password2")
+                    user = User.objects.create(username=username, email=email, first_name=first_name, last_name=last_name)
+                    user.set_password(password)
+                    user.save()
+                    messages.info(request,"You have been successfully registered")
+                    return render(request,'home/addblog.html',context={})
+                else:
+                    return render(request,"home/register.html",context={"wrong_password": True})
     else:
         return HttpResponse("<h1>404: ERROR- This page can not be accessed by anyone</h1>")
 
